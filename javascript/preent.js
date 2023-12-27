@@ -19,18 +19,43 @@ let tag;
 
 let total = 0;
 
+let comp = 0;
 
+
+function msn(t){
+
+    if( t = 1){
+
+        mensaje = "\n" + producto_1 + " --> " + precio_1;
+
+    } else if (t = 2){
+
+        mensaje = "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2;
+
+    } else if (t = 3){
+
+        mensaje = "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2 + "\n" + producto_3 + " --> " + precio_3;
+ 
+    } else if (t = 4){
+
+        mensaje = "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2 + "\n" + producto_3 + " --> " + precio_3 + "\n" + producto_4 + " --> " + precio_4;
+
+    } else if (t = 5){
+
+        mensaje = "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2 + "\n" + producto_3 + " --> " + precio_3 + "\n" + producto_4 + " --> " + precio_4 + "\n" + producto_5 + " --> " + precio_5;
+        tag = confirm("Los productos que usted acaba de agregar son " + mensaje + "\nel valor de la compra es de " + "\n" + total + "$" + "\nconfirmar compra?")
+    }
+
+}
 function check_text(prod, q) {
 
-    if (prod != null) {
+    if (prod == null || prod == "" || prod.length < 3) {
 
-        if (prod == null || prod == "" || prod.length < 3) {
+        alert("ingrese un nombre real");
+        prods(q);
 
-            alert("ingrese un nombre real");
-            prods(q);
-
-        }
     }
+
 }
 
 function check_num(precio, q) {
@@ -53,17 +78,13 @@ function prods(a) {
         check_text(producto_1, a);
         precio_1 = parseFloat(prompt("ingrese valor del producto " + a));
         check_num(precio_1, a);
-        console.log(precio_1);
 
     } else if (a == 2) {
 
         producto_2 = prompt("ingrese nombre de producto " + a);
-        //        console.log(producto_2);
         check_text(producto_2, a);
         precio_2 = parseFloat(prompt("ingrese valor del producto " + a));
         check_num(precio_2, a);
-
-        //        check(producto_2, precio_2, a);
 
     } else if (a == 3) {
 
@@ -92,6 +113,17 @@ function prods(a) {
 
 function carrito() {
 
+    producto_1 = "";
+    precio_1 = 0;
+    producto_2 = "";
+    precio_2 = 0;
+    producto_3 = "";
+    precio_3 = 0;
+    producto_4 = "";
+    precio_4 = 0;
+    producto_5 = "";
+    precio_5 = 0;
+
     let i = 1;
 
     do {
@@ -100,15 +132,44 @@ function carrito() {
 
         console.log(i);
 
-        i++;
+        tag = confirm("Desea agregar producto mas? (" + i + "/5)");
+
+        if (tag == true) {
+
+            i++;
+
+        } else {
+
+            comp = i;
+            i = 6;
+
+        }
+
+
 
     } while (i < 6)
 
     total = precio_1 + precio_2 + precio_3 + precio_4 + precio_5;
 
-    totalHoy = totalHoy + total;
+    msn(i);
+    tag = confirm("Los productos que usted acaba de agregar son " + mensaje + "\nel valor de la compra es de " + "\n" + total + "$" + "\nconfirmar compra?")
 
-    cantidadCompras++;
+    if (tag == true) {
+
+        totalHoy = totalHoy + total;
+
+        cantidadCompras++;
+
+        alert("✔ Compra confirmada");
+
+    } else {
+
+        total = 0; 
+
+        alert("❌ Compra cancelada");
+    }   
+
+    menu();
 
 }
 

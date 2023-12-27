@@ -24,26 +24,26 @@ let comp = 0;
 
 function msn(t){
 
-    if( t = 1){
+    if( t == 1){
 
-        mensaje = "\n" + producto_1 + " --> " + precio_1;
+        alert("Los productos que usted acaba de agregar son " + "\n" + producto_1 + " --> " + precio_1 + "x");
 
-    } else if (t = 2){
+    } else if (t == 2){
 
-        mensaje = "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2;
+        alert("Los productos que usted acaba de agregar son " + "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2);
 
-    } else if (t = 3){
+    } else if (t == 3){
 
-        mensaje = "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2 + "\n" + producto_3 + " --> " + precio_3;
+        alert("Los productos que usted acaba de agregar son " + "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2 + "\n" + producto_3 + " --> " + precio_3);
  
-    } else if (t = 4){
+    } else if (t == 4){
 
-        mensaje = "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2 + "\n" + producto_3 + " --> " + precio_3 + "\n" + producto_4 + " --> " + precio_4;
+        alert("Los productos que usted acaba de agregar son " + "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2 + "\n" + producto_3 + " --> " + precio_3 + "\n" + producto_4 + " --> " + precio_4);
 
-    } else if (t = 5){
+    } else if (t == 5){
 
-        mensaje = "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2 + "\n" + producto_3 + " --> " + precio_3 + "\n" + producto_4 + " --> " + precio_4 + "\n" + producto_5 + " --> " + precio_5;
-        tag = confirm("Los productos que usted acaba de agregar son " + mensaje + "\nel valor de la compra es de " + "\n" + total + "$" + "\nconfirmar compra?")
+        alert("Los productos que usted acaba de agregar son " + "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2 + "\n" + producto_3 + " --> " + precio_3 + "\n" + producto_4 + " --> " + precio_4 + "\n" + producto_5 + " --> " + precio_5);
+
     }
 
 }
@@ -140,6 +140,7 @@ function carrito() {
 
         } else {
 
+            msn(i);
             comp = i;
             i = 6;
 
@@ -151,8 +152,8 @@ function carrito() {
 
     total = precio_1 + precio_2 + precio_3 + precio_4 + precio_5;
 
-    msn(i);
-    tag = confirm("Los productos que usted acaba de agregar son " + mensaje + "\nel valor de la compra es de " + "\n" + total + "$" + "\nconfirmar compra?")
+    console.log("s" + comp);
+    tag = confirm("El valor de la compra es de " + "\n" + total + "$" + "\nconfirmar compra?")
 
     if (tag == true) {
 

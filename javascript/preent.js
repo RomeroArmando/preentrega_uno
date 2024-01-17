@@ -3,7 +3,7 @@ let totalHoy = 0;
 
 let mensaje;
 let prop;
-/*
+// esto limita la cantidad de productos, se cambiarara por una objeto [producto] y una lista [carrito] 
 let producto_1;
 let precio_1 = 0;
 let producto_2;
@@ -14,14 +14,14 @@ let producto_4;
 let precio_4 = 0;
 let producto_5;
 let precio_5 = 0;
-*/
+
 let tag;
 
 let total = 0;
 
 let comp = 0;
 
-
+// generacion del mensaje del total del carrito 
 function mensaje_precio(t){
 
     if( t == 1){
@@ -47,6 +47,8 @@ function mensaje_precio(t){
     }
 
 }
+
+//checkeo de texto 
 function check_text(prod, q) {
 
     if (prod == null || prod == "" || prod.length < 3) {
@@ -58,6 +60,7 @@ function check_text(prod, q) {
 
 }
 
+/* ---------------------------- checkeo de numero --------------------------- */
 function check_num(precio, q) {
 
     if (isNaN(precio)) {
@@ -69,6 +72,7 @@ function check_num(precio, q) {
 
 }
 
+/* - carga de productos al carro, limitado por el harcodeo de las variables - */
 function prods(a) {
 
 
@@ -111,6 +115,7 @@ function prods(a) {
 
 }
 
+/* ------------------------ funcionamento del carrito ----------------------- */
 function carrito() {
 
     producto_1 = "";
@@ -174,6 +179,7 @@ function carrito() {
 
 }
 
+/* -------------------------- validacion de compra -------------------------- */
 function compra() {
 
     prop = confirm("Desea iniciar una nueva compra?");
@@ -192,6 +198,7 @@ function compra() {
 
 }
 
+/* ----------------------------- menu principal ----------------------------- */
 function menu() {
 
     mensaje = parseInt(prompt("seleccione una opcion" + "\n🛒 (1) Compra" + "\n💵 (2) Total de compras hoy" + "\n🎈 (3) Valor de ultima compra" + "\n🧲 (4) cantidad de compras: 4"));

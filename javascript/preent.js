@@ -22,7 +22,7 @@ let total = 0;
 let comp = 0;
 
 
-function msn(t){
+function mensaje_precio(t){
 
     if( t == 1){
 
@@ -140,7 +140,7 @@ function carrito() {
 
         } else {
 
-            msn(i);
+            mensaje_precio(i);
             comp = i;
             i = 6;
 

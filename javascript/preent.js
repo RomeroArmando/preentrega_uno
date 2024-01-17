@@ -3,7 +3,7 @@ let totalHoy = 0;
 
 let mensaje;
 let prop;
-
+/*
 let producto_1;
 let precio_1 = 0;
 let producto_2;
@@ -14,7 +14,7 @@ let producto_4;
 let precio_4 = 0;
 let producto_5;
 let precio_5 = 0;
-
+*/
 let tag;
 
 let total = 0;

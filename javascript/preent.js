@@ -3,18 +3,27 @@ let totalHoy = 0;
 
 let mensaje;
 let prop;
-/*
-let producto_1;
-let precio_1 = 0;
-let producto_2;
-let precio_2 = 0;
-let producto_3;
-let precio_3 = 0;
-let producto_4;
-let precio_4 = 0;
-let producto_5;
-let precio_5 = 0;
-*/
+
+let producto = [ // array de objetos
+    {
+        id: 1,
+        nombre: "teclado",
+        precio: 5000
+    },
+    {
+        id: 2,
+        nombre: "Mouse",
+        precio: 3000
+    },
+    {
+        id: 3,
+        nombre: "mochila",
+        precio: 1000
+    }
+];
+
+//let carrito = [ ]; //array
+
 let tag;
 
 let total = 0;
@@ -22,25 +31,25 @@ let total = 0;
 let comp = 0;
 
 
-function mensaje_precio(t){
+function mensaje_precio(t) {
 
-    if( t == 1){
+    if (t == 1) {
 
         alert("Los productos que usted acaba de agregar son " + "\n" + producto_1 + " --> " + precio_1 + "x");
 
-    } else if (t == 2){
+    } else if (t == 2) {
 
         alert("Los productos que usted acaba de agregar son " + "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2);
 
-    } else if (t == 3){
+    } else if (t == 3) {
 
         alert("Los productos que usted acaba de agregar son " + "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2 + "\n" + producto_3 + " --> " + precio_3);
- 
-    } else if (t == 4){
+
+    } else if (t == 4) {
 
         alert("Los productos que usted acaba de agregar son " + "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2 + "\n" + producto_3 + " --> " + precio_3 + "\n" + producto_4 + " --> " + precio_4);
 
-    } else if (t == 5){
+    } else if (t == 5) {
 
         alert("Los productos que usted acaba de agregar son " + "\n" + producto_1 + " --> " + precio_1 + "\n" + producto_2 + " --> " + precio_2 + "\n" + producto_3 + " --> " + precio_3 + "\n" + producto_4 + " --> " + precio_4 + "\n" + producto_5 + " --> " + precio_5);
 
@@ -165,10 +174,10 @@ function carrito() {
 
     } else {
 
-        total = 0; 
+        total = 0;
 
         alert("❌ Compra cancelada");
-    }   
+    }
 
     menu();
 
@@ -192,9 +201,43 @@ function compra() {
 
 }
 
+function productos() {
+
+    mensaje = parseInt(prompt("Seleccione una opcion" + "\n🗺 (1) Ver Productos" + "\n🔥 (2) Crear Producto" + "\n💧 (3) Eliminar productos"));
+    console.log(mensaje.isNaN);
+
+    if (isNaN(mensaje)) {
+
+        menu();
+
+    } else {
+
+        switch (mensaje) {
+            case 1:
+
+                mensaje = "Los productos cargados son:";
+
+                for (let i = 0; i < producto.length; i++) {
+
+                    mensaje += "\n" + producto[i].id + "- " + producto[i].nombre;
+                    console.log(mensaje);
+                }
+
+                alert(mensaje);
+                productos();
+                break;
+
+            default:
+
+                break;
+        }
+
+    }
+}
+
 function menu() {
 
-    mensaje = parseInt(prompt("seleccione una opcion" + "\n🛒 (1) Compra" + "\n💵 (2) Total de compras hoy" + "\n🎈 (3) Valor de ultima compra" + "\n🧲 (4) cantidad de compras: 4"));
+    mensaje = parseInt(prompt("seleccione una opcion" + "\n🛒 (1) Carrito" + "\n⚡ (2) Productos" + "\n💵 (3) Total de compras hoy" + "\n🎈 (4) Valor de ultima compra" + "\n🧲 (5) cantidad de compras"));
 
     switch (mensaje) {
 
@@ -206,19 +249,25 @@ function menu() {
 
         case 2:
 
+            productos();
+
+            break;
+
+        case 3:
+
             alert("el valor de todas las compras de hoy es " + totalHoy);
             menu();
 
             break;
 
-        case 3:
+        case 4:
 
             alert("el valor de la ultima compra de hoy fue " + total);
             menu();
 
             break;
 
-        case 4:
+        case 5:
 
             alert("la cantidad de compras realizadas hoy fue de " + cantidadCompras);
             menu();

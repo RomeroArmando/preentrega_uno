@@ -22,6 +22,11 @@ let producto = [ // array de objetos
     }
 ];
 
+let id = 0;
+let nombre;
+let precio = 0;
+
+
 //let carrito = [ ]; //array
 
 let tag;
@@ -56,27 +61,7 @@ function mensaje_precio(t) {
     }
 
 }
-function check_text(prod, q) {
 
-    if (prod == null || prod == "" || prod.length < 3) {
-
-        alert("ingrese un nombre real");
-        prods(q);
-
-    }
-
-}
-
-function check_num(precio, q) {
-
-    if (isNaN(precio)) {
-
-        alert("ingrese un valor numerico");
-        prods(q);
-
-    }
-
-}
 
 function prods(a) {
 
@@ -201,6 +186,31 @@ function compra() {
 
 }
 
+/* -------------------------- area de verificacion -------------------------- */
+function check_text(prod) {
+
+    if (prod == null || prod == "" || prod.length < 3) {
+
+        alert("ingrese un nombre real");
+        return false;
+    }
+
+    return true;
+
+}
+
+function check_num(precio) {
+
+    if (isNaN(precio)) {
+
+        alert("ingrese un valor numerico");
+        return false;
+    }
+
+    return true;
+
+}
+
 function productos() {
 
     mensaje = parseInt(prompt("Seleccione una opcion" + "\n🗺 (1) Ver Productos" + "\n🔥 (2) Crear Producto" + "\n💧 (3) Eliminar productos"));
@@ -219,12 +229,54 @@ function productos() {
 
                 for (let i = 0; i < producto.length; i++) {
 
-                    mensaje += "\n" + producto[i].id + "- " + producto[i].nombre;
+                    mensaje += "\n" + producto[i].id + "- " + producto[i].nombre + "---> Precio:" + producto[i].precio;
                     console.log(mensaje);
                 }
 
                 alert(mensaje);
                 productos();
+                break;
+
+            case 2:
+
+                prop = confirm("Desea agregar un producto?");
+
+                if (prop) {
+
+                    id = producto.length + 1;
+
+                    do {
+
+                        nombre = prompt("ingrese nombre de producto:");
+
+                    } while (!check_text(nombre));
+
+                    do {
+                        
+                        precio = parseFloat(prompt("ingrese valor del producto:"));
+
+                    } while (!check_num(precio));
+                    
+                    prop = confirm("Desea cargar el producto?");
+
+                    if(prop){
+
+                        producto.push({id: id, nombre: nombre, precio: precio});
+                        productos();
+
+                    } else{
+
+                        alert("❌ carga cancelada")
+                        productos();
+
+                    }
+
+                } else {
+
+                    productos();
+
+                }
+
                 break;
 
             default:

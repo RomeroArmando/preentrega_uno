@@ -26,8 +26,12 @@ let id = 0;
 let nombre;
 let precio = 0;
 
+let id_carro = 0;
+let id_prod = 0;
 
-//let carrito = [ ]; //array
+
+let carro = [{id: 0 , nombre: "ss", cantidad: 1, precio_u: 0}]; //array
+//formato {id:, nombre:, cantidad:, precio_u:}
 
 let tag;
 
@@ -107,64 +111,67 @@ function prods(a) {
 
 function carrito() {
 
-    producto_1 = "";
-    precio_1 = 0;
-    producto_2 = "";
-    precio_2 = 0;
-    producto_3 = "";
-    precio_3 = 0;
-    producto_4 = "";
-    precio_4 = 0;
-    producto_5 = "";
-    precio_5 = 0;
 
-    let i = 1;
+    mensaje = "Los productos disponibles son:";
 
-    do {
+    for (let i = 0; i < producto.length; i++) {
 
-        prods(i);
-
-        console.log(i);
-
-        tag = confirm("Desea agregar producto mas? (" + i + "/5)");
-
-        if (tag == true) {
-
-            i++;
-
-        } else {
-
-            mensaje_precio(i);
-            comp = i;
-            i = 6;
-
-        }
+        mensaje += "\n" + producto[i].id + "- " + producto[i].nombre + "---> Precio: " + producto[i].precio;
+        //console.log(mensaje);
+    }
 
 
 
-    } while (i < 6)
+    mensaje += "\n Seleccione lo que desea agregar al carrito"
 
-    total = precio_1 + precio_2 + precio_3 + precio_4 + precio_5;
+    if (carro.length == 1) {
 
-    console.log("s" + comp);
-    tag = confirm("El valor de la compra es de " + "\n" + total + "$" + "\nconfirmar compra?")
-
-    if (tag == true) {
-
-        totalHoy = totalHoy + total;
-
-        cantidadCompras++;
-
-        alert("✔ Compra confirmada");
+        prop = prompt(mensaje);
+        console.log(prop);
 
     } else {
 
-        total = 0;
+        mensaje += "\n/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ \nCarro actual"
 
-        alert("❌ Compra cancelada");
+        //formato {id:, nombre:, cantidad:, precio_u:}
+        for (let i = 0; i < carro.length; i++) {
+
+            mensaje += "\n" + carro[i].nombre + "---> cantidad:" + carro[i].cantidad + "---> Precio: " + carro[i].precio * carro[i].cantidad;
+        }
+
+        prop = prompt(mensaje);
+        console.log("else" + prop);
+
     }
 
-    menu();
+    if (check_array(prop, producto)) {
+
+        if (check_id(carro, producto)){
+
+            carro[id_carro].cantidad++;
+            carrito();
+            console.log("ss");
+
+        } else {
+
+            id = producto[prop - 1].id;
+
+            nombre = producto[prop- 1].nombre;
+
+            precio = producto[prop - 1].precio
+
+            carro.push[{ id: id, nombre: nombre, cantidad: 1, precio_u: precio }];
+            carrito();
+            console.log("tt");
+        }
+
+        console.log("zz");
+    } else {
+
+        console.log("55");
+        carrito();
+
+    }
 
 }
 
@@ -186,7 +193,7 @@ function compra() {
 
 }
 
-/* -------------------------- area de verificacion -------------------------- */
+/* ------------------------------ validaciones ------------------------------ */
 function check_text(prod) {
 
     if (prod == null || prod == "" || prod.length < 3) {
@@ -211,6 +218,57 @@ function check_num(precio) {
 
 }
 
+function check_array(msn, array) {
+
+    if (msn != 0 && msn <= array.length) {
+
+        return true;
+
+    } else {
+
+        alert("El id de producto no existe");
+        return false;
+
+    }
+
+}
+
+function check_id(a, b) {
+
+    if (a.length == 1) {
+
+        return false;
+
+    } else {
+
+        for (let i = 0; i < a.length; i++) {
+
+            if (a[i].id == b[prop].id) {
+    
+                id_carro = a[i].id;
+    
+                return true;
+    
+            }
+    
+        }
+
+    }
+
+    return false;
+}
+
+function orden(array) {
+
+    for (let i = 0; i < array.length; i++) {
+
+        array[i].id = i + 1;
+
+    }
+
+}
+
+/* -------------------------- gestion de productos -------------------------- */
 function productos() {
 
     mensaje = parseInt(prompt("Seleccione una opcion" + "\n🗺 (1) Ver Productos" + "\n🔥 (2) Crear Producto" + "\n💧 (3) Eliminar productos"));
@@ -252,24 +310,68 @@ function productos() {
                     } while (!check_text(nombre));
 
                     do {
-                        
+
                         precio = parseFloat(prompt("ingrese valor del producto:"));
 
                     } while (!check_num(precio));
-                    
+
                     prop = confirm("Desea cargar el producto?");
 
-                    if(prop){
+                    if (prop) {
 
-                        producto.push({id: id, nombre: nombre, precio: precio});
+                        producto.push({ id: id, nombre: nombre, precio: precio });
                         productos();
 
-                    } else{
+                    } else {
 
                         alert("❌ carga cancelada")
                         productos();
 
                     }
+
+                } else {
+
+                    productos();
+
+                }
+
+                break;
+
+            case 3:
+
+                mensaje = "Los productos cargados son:";
+
+                for (let i = 0; i < producto.length; i++) {
+
+                    mensaje += "\n" + producto[i].id + "- " + producto[i].nombre + "---> Precio:" + producto[i].precio;
+
+                }
+
+                mensaje += "\nCual desea eliminar? \n [ingrese el numero correspondiente]";
+
+                do {
+
+                    do {
+
+                        precio = prompt(mensaje);
+                        console.log(precio);
+
+                    } while (!check_num(precio));
+
+                    console.log(precio);
+
+                } while (!check_array(precio, producto));
+
+                prop = confirm("Esta seguro que desea eleiminar " + producto[precio - 1].nombre)
+                if (prop) {
+
+                    producto.splice(precio - 1, 1)
+
+                    orden(producto);
+
+                    alert("se elimino el producto");
+
+                    productos();
 
                 } else {
 
@@ -287,6 +389,7 @@ function productos() {
     }
 }
 
+/* ----------------------------- menu principal ----------------------------- */
 function menu() {
 
     mensaje = parseInt(prompt("seleccione una opcion" + "\n🛒 (1) Carrito" + "\n⚡ (2) Productos" + "\n💵 (3) Total de compras hoy" + "\n🎈 (4) Valor de ultima compra" + "\n🧲 (5) cantidad de compras"));

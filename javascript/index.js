@@ -20,7 +20,7 @@ cartCount.innerText = carro.getCount();
 
 btnModalCarrito.addEventListener('click', function () {
     
-    total.innerText = carro.getSum();
+    total.innerHTML = carro.getSum();
 
     renderCarro(carro.getProductos());
 

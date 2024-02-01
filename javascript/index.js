@@ -5,6 +5,8 @@ const btnModalCarrito = document.querySelector("#botonCarro");
 
 const carroModal = document.querySelector("#cuerpoModal");
 
+const total = document.querySelector("#total")
+
 // constantes de Tarjetas
 const listaProd = document.querySelector("#tarjeta_prod");
 
@@ -17,7 +19,8 @@ const carro = new Carro(listCarro)
 cartCount.innerText = carro.getCount();
 
 btnModalCarrito.addEventListener('click', function () {
-
+    
+    total.innerText = carro.getSum();
 
     renderCarro(carro.getProductos());
 
@@ -43,12 +46,6 @@ const renderCarro = (list) => {
         </tr>`
 
     });
-
-    carroModal.innerHTML += //html 
-
-        `<caption>
-            Precio Total: "${carro.getSum}"
-        </caption>`
 
 }
 

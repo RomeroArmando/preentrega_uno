@@ -37,7 +37,8 @@ class Carro {
     }
 
     getSum(){
-        const count = this.cart.reduce( (cant, product) => {return cant + (product.cantidad * product.precio)}, 0 );
-        return count;
+        
+        return this.cart.reduce( (cant, product) => {return cant + (product.cantidad * product.precio)}, 0 );
+        
     }
 }

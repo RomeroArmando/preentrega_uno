@@ -2,7 +2,9 @@ class Carro {
 
     /* ----------- crea el array donde estaran los productos de carro ----------- */
     constructor(list = []) { //Formato {id, nombre, cantidad, precio_u}
+        
         this.cart = list;
+
     }
 
     addToCart({ id, nombre, precio }) {

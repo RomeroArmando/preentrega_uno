@@ -1,3 +1,8 @@
+//constantes globales 
+const titulo = document.querySelector("#titulo")
+
+const encabezado = document.querySelector("#encabezado")
+
 // constantes del modal
 const modal = new bootstrap.Modal('#modalCarrito', {});
 
@@ -5,12 +10,17 @@ const btnModalCarrito = document.querySelector("#botonCarro");
 
 const carroModal = document.querySelector("#cuerpoModal");
 
-const total = document.querySelector("#total")
+const bot_mod = document.querySelector("#botones-modal")
 
 // constantes de Tarjetas
 const listaProd = document.querySelector("#tarjeta_prod");
 
 const conteo = document.querySelector("#cartCount");
+
+
+const hilo = document.querySelector("#thead")
+const pie = document.querySelector("#foot")
+
 
 //lee el arreglo sino devulve uno vacio
 const listCarro = JSON.parse(localStorage.getItem("carro")) || [];
@@ -18,9 +28,25 @@ const carro = new Carro(listCarro)
 
 cartCount.innerText = carro.getCount();
 
+encabezado.innerText = `bienvenido ${JSON.parse(localStorage.getItem("user"))}`
+
 btnModalCarrito.addEventListener('click', function () {
+
+
+
+    hilo.innerHTML = //html
+        `<tr>
+        <th>Producto</th>
+        <th>Precio Unitario</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+    </tr>`;
+
+    pie.innerHTML = //html 
+        `Precio Total: $ ${carro.getSum()}`;
+
+
     
-    total.innerHTML = carro.getSum();
 
     renderCarro(carro.getProductos());
 
@@ -36,7 +62,7 @@ const renderCarro = (list) => {
 
         carroModal.innerHTML += //html 
 
-        `<tr>
+            `<tr>
 
             <td>${element.nombre}</td>
             <td>${element.precio}</td>
@@ -107,4 +133,16 @@ const agregarCarro = (a) => {
 
 
 
-renderProductos(producto);
+/*
+if (titulo.innerText == "Carro || Terceta Preentrega") {
+
+      
+
+} else {
+
+    //console.log(titulo.innerText)
+    
+    
+}
+*/
+renderProductos(producto); 

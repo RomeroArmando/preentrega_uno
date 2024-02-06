@@ -22,3 +22,22 @@ const producto = [ // array de objetos
     }
 ];
 
+const users = [
+    {
+        id: 0,
+        name: "anonimo",
+        password: "0000"
+    },
+    {
+        id: 1,
+        name: "usuario",
+        password: "1234"
+    },
+    {
+        id: 2,
+        name: "administrador",
+        password: "4321"
+    }
+];
+
+

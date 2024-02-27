@@ -21,6 +21,11 @@ const conteo = document.querySelector("#cartCount");
 const hilo = document.querySelector("#thead")
 const pie = document.querySelector("#foot")
 
+//operadores del loader
+const body = document.querySelector('body');
+
+const mostrarLoading = () => { body.classList.remove('loaded') }
+const ocultarLoading = () => { body.classList.add('loaded') }
 
 //lee el arreglo sino devulve uno vacio
 const listCarro = JSON.parse(localStorage.getItem("carro")) || [];
@@ -46,7 +51,7 @@ btnModalCarrito.addEventListener('click', function () {
         `Precio Total: $ ${carro.getSum()}`;
 
 
-    
+
 
     renderCarro(carro.getProductos());
 
@@ -103,7 +108,6 @@ const renderProductos = (list) => {
                 </div>
 
             </div>`;
-
     });
 
     /* ---------------- genera el event listener para los botones --------------- */
@@ -115,6 +119,8 @@ const renderProductos = (list) => {
         btn.addEventListener("click", agregarCarro)
 
     });
+
+    ocultarLoading();
 }
 
 const agregarCarro = (a) => {
@@ -145,4 +151,32 @@ if (titulo.innerText == "Carro || Terceta Preentrega") {
     
 }
 */
-renderProductos(producto); 
+
+const getProductProm = () => {
+
+    mostrarLoading();
+
+    const endPoint = "../json/data.json";
+
+    fetch(endPoint)
+        .then(repuesta => repuesta.json())
+        .then(resp => {
+
+            const prod = resp.producto
+
+            renderProductos(prod); 
+
+        }).catch( error => { // Fallo la promesa
+            Swal.fire({
+                title: "Error",
+                text: 'Ocurrio un error',
+                icon: "error",
+                confirmButtonText: 'Aceptar'
+            });
+
+        }).finally ( ()=> {
+            ocultarLoading();
+        })
+}
+
+getProductProm();

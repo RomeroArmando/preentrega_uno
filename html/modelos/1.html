@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deshabilitar Label con Checkbox</title>
+</head>
+<body>
+
+  <!-- Etiqueta y campo de entrada -->
+  <label for="miCampo">Mi Etiqueta:</label>
+  <input type="text" id="miCampo">
+
+  <!-- Checkbox para activar/desactivar el campo -->
+  <input type="checkbox" id="chkDeshabilitar">
+  <label for="chkDeshabilitar">Deshabilitar Campo</label>
+
+  <script>
+    document.getElementById("chkDeshabilitar").addEventListener("change", function() {
+      // Obtener el campo de entrada por su ID
+      var campo = document.getElementById("miCampo");
+
+      // Deshabilitar o habilitar el campo de entrada según el estado del checkbox
+      campo.disabled = this.checked;
+    });
+  </script>
+
+</body>
+</html>

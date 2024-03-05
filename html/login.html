@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="titulo">Login || Terceta Preentrega</title>
+    <title id="titulo">Login || Carro de Compras</title>
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -29,7 +29,11 @@
     <div class="login">
         <div class="mb-3">
             
-            <div class="check">
+            <div>
+                <input type="checkbox" id="check2">
+                <label class="form-check-label">Ingresar sin Usuario</label>
+            </div>
+            <div class="check dis2">
                 <label>Nombre de Usuario</label>
                 <input id="name" class="form-control">
             </div>
@@ -37,10 +41,11 @@
                 <label >Contraseña</label>
                 <input type="password" id="pass" class="form-control" placeholder="password">
             </div>
-            <div class="check">
+            <div class="check dis3">
                 <input type="checkbox" id="check">
                 <label class="form-check-label">Ingresar sin contraseña</label>
             </div>
+
 
         </div>
         <button id="entrar" class="btn btn-primary">Entrar</button>

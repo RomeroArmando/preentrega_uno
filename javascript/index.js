@@ -127,13 +127,31 @@ const agregarCarro = (a) => {
 
     console.log(a.target.id);
 
-    const b = producto.find(item => item.id == a.target.id);
-    console.table(b);
+    const endPoint = "../json/data.json";
 
-    carro.addToCart(b);
+    fetch(endPoint)
+        .then(repuesta => repuesta.json())
+        .then(resp => {
 
-    console.log(typeof (carro));
-    conteo.innerText = carro.getCount();
+            const prod = resp.producto
+
+            const b = prod.find(item => item.id == a.target.id);
+            console.table(b);
+
+            carro.addToCart(b);
+
+            console.log(typeof (carro));
+            conteo.innerText = carro.getCount();
+
+        }).catch(error => { // Fallo la promesa
+            Swal.fire({
+                title: "Error",
+                text: 'Ocurrio un error',
+                icon: "error",
+                confirmButtonText: 'Aceptar'
+            });
+
+        });
 
 }
 
@@ -164,9 +182,9 @@ const getProductProm = () => {
 
             const prod = resp.producto
 
-            renderProductos(prod); 
+            renderProductos(prod);
 
-        }).catch( error => { // Fallo la promesa
+        }).catch(error => { // Fallo la promesa
             Swal.fire({
                 title: "Error",
                 text: 'Ocurrio un error',
@@ -174,7 +192,7 @@ const getProductProm = () => {
                 confirmButtonText: 'Aceptar'
             });
 
-        }).finally ( ()=> {
+        }).finally(() => {
             ocultarLoading();
         })
 }

@@ -1,3 +1,8 @@
+
+
+const encabezado = document.querySelector("#encabezado")
+encabezado.innerText = `Este es tu carro ${JSON.parse(localStorage.getItem("user"))}`
+
 class Carro {
 
     /* ----------- crea el array donde estaran los productos de carro ----------- */

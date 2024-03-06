@@ -75,6 +75,22 @@ a{
 
 }
 
+.compra {
+
+  min-height: 20vw;
+  margin: 2vw;
+  align-items: normal;
+
+}
+
+.bot {
+
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+
+}
+
 /* LOADING: https://codepen.io/rickzanutta/pen/wvXXPZ */
 
 #content {

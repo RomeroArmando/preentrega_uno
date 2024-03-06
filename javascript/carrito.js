@@ -1,8 +1,6 @@
 
 
-const encabezado = document.querySelector("#encabezado")
-encabezado.innerText = `Este es tu carro ${JSON.parse(localStorage.getItem("user"))}`
-
+encabezado.innerText += ` ${JSON.parse(localStorage.getItem("user"))}`
 class Carro {
 
     /* ----------- crea el array donde estaran los productos de carro ----------- */
@@ -12,13 +10,13 @@ class Carro {
 
     }
 
-    addToCart({ id, nombre, precio }) {
+    addToCart({ id, nombre, precio, img }) {
 
         //busco el producto
         const index = this.cart.findIndex(product => product.id == id);
         if (index == -1) {
 
-            this.cart.push({ id, nombre, precio, cantidad: 1 })
+            this.cart.push({ id, nombre, precio, cantidad: 1, img })
 
         } else {
 
@@ -49,3 +47,5 @@ class Carro {
         
     }
 }
+
+

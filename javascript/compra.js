@@ -1,5 +1,62 @@
 const producto = document.querySelector(".prod")
 
+const finalizar = document.querySelector(".finalizar")
+const cancelar = document.querySelector(".cancelar")
+
+finalizar.addEventListener("click", function(){
+
+    Swal.fire({
+        title: "Esta a punto de comprar este carro!",
+        text: "¿Esta seguro?",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si"
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+          Swal.fire({
+            title: "Compra realizada",
+            text: "Su carro fue comprado con exito!",
+            icon: "success"
+          }).finally(setTimeout(volverAlCarro, 3000));
+        }
+      });;
+
+});
+
+const volverAlCarro = () => {
+
+    window.location.href = "carrito.html"
+    localStorage.clear("carro");
+
+}
+
+cancelar.addEventListener("click", function(){
+
+    Swal.fire({
+        title: "Esta a punto de cancelar esta compra!",
+        text: "¿Esta seguro?",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si"
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+          Swal.fire({
+            title: "Compra cancelada",
+            text: "Su carro fue comprado con exito!",
+            icon: "warning"
+          }).finally(setTimeout(volverAlCarro, 3000));
+        }
+      });;
+
+});
+
+
 const renderCompra = (list) => {
 
     producto.innerHTML = ``;
@@ -14,7 +71,7 @@ const renderCompra = (list) => {
 
                 <div class="col-md-4">
 
-                    <img src="${element.img}" class="img-fluid rounded-start">
+                    <img src="${element.img}" class="img-fluid img-thumbnail rounded-start img-compra">
 
                 </div>
 
@@ -33,7 +90,7 @@ const renderCompra = (list) => {
                         <a>Total: ${element.precio * element.cantidad}</a>
 
                     </div>
-
+                    <button id="${element.id}" type="button" class="btn btn-dark delete">eliminar de carro</button>
                 </div>
 
             </div>
@@ -42,6 +99,7 @@ const renderCompra = (list) => {
         `
         const btnMas = document.querySelectorAll(".btnMas");
         const btnMenos = document.querySelectorAll(".btnMenos");
+        const btnDelete = document.querySelectorAll(".delete");
 
         btnMas.forEach(btn => {
 
@@ -53,6 +111,11 @@ const renderCompra = (list) => {
             btn.addEventListener("click", restarCompra)
 
         });
+        btnDelete.forEach(btn => {
+
+            btn.addEventListener("click", eliminarDeCarro)
+
+        });
 
     });
 
@@ -61,16 +124,30 @@ const renderCompra = (list) => {
 
 const compra = JSON.parse(localStorage.getItem("carro"));
 
+
+const eliminarDeCarro = (a) => {
+
+    const prod = compra
+
+    const b = prod.findIndex(item => item.id == a.target.id);
+
+    compra.splice(b, 1);
+    renderCompra(compra);
+    localStorage.clear("carro");
+    localStorage.setItem("carro", JSON.stringify(compra));
+}
+
 const sumarCompra = (a) => {
 
     const prod = compra
 
     const b = prod.findIndex(item => item.id == a.target.id);
-    
+
     console.log(compra[b].cantidad);
     compra[b].cantidad += 1;
 
     renderCompra(compra);
+    localStorage.setItem("carro", JSON.stringify(compra));
 }
 
 const restarCompra = (a) => {
@@ -78,11 +155,18 @@ const restarCompra = (a) => {
     const prod = compra
 
     const b = prod.findIndex(item => item.id == a.target.id);
-    
-    compra[b].cantidad -= 1;
 
+    if (compra[b].cantidad >= 2) {
+
+        compra[b].cantidad -= 1;
+
+    }
+    
     renderCompra(compra);
+    localStorage.setItem("carro", JSON.stringify(compra));
 }
 
 renderCompra(compra);
+
+
 

@@ -79,14 +79,11 @@ check.addEventListener("click", () => {
 
     if (check.checked) {
 
-        disable.innerHTML = //html
-            `<label >Sin Contraseña</label>`
+        password.disabled = true;
 
     } else {
 
-        disable.innerHTML =  //html
-            `<label >Contraseña</label>
-            <input type="password" id="pass" class="form-control" placeholder="contraseña">`
+        password.disabled = false;
 
     }
 
